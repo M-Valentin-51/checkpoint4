@@ -20,7 +20,8 @@ router.delete("/items/:id", itemControllers.destroy);
 const projectControllers = require("./controllers/projectControllers");
 
 router.get("/projects", projectControllers.browse);
-
+router.get("/project/:id", projectControllers.read);
+router.put("/project/:id", projectControllers.edit);
 // route POST pour recevoir un fichier dont le nom est "avatar"
 router.post(
   "/project",

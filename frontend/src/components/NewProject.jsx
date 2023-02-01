@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useContext, useRef } from "react";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { ProjectContext } from "../context/ProjectContext";
 
-export default function ModalProject({ setFormActive }) {
+export default function NewProject() {
   const { getProject } = useContext(ProjectContext);
 
   const titreRef = useRef();
@@ -14,7 +14,7 @@ export default function ModalProject({ setFormActive }) {
 
   return (
     <form
-      className="modalForm"
+      className="formProject"
       onSubmit={(e) => {
         e.preventDefault();
 
@@ -25,17 +25,24 @@ export default function ModalProject({ setFormActive }) {
         formData.append("listTechno", technoRef.current.value);
         formData.append("description", descriptionRef.current.value);
 
-        axios
-          .post(`${import.meta.env.VITE_BACKEND_URL}/project`, formData)
-          .then((rep) => {
-            if (rep.status === 201) {
-              getProject();
-              setFormActive(false);
-            }
-          })
-          .catch(() => {
-            alert("Une erreur est survenue");
-          });
+        if (
+          titreRef.current.value &&
+          lienRef.current.value &&
+          technoRef.current.value
+        ) {
+          axios
+            .post(`${import.meta.env.VITE_BACKEND_URL}/project`, formData)
+            .then((rep) => {
+              if (rep.status === 201) {
+                getProject();
+              }
+            })
+            .catch(() => {
+              alert("Une erreur est survenue");
+            });
+        } else {
+          alert("Veuillez rentrer tout les champs");
+        }
       }}
     >
       <div>
@@ -63,13 +70,14 @@ export default function ModalProject({ setFormActive }) {
         <textarea ref={descriptionRef} id="describ" cols="30" rows="10" />
       </div>
 
-      <button type="submit">Enregistrer</button>
+      <div>
+        <button type="submit">Enregistrer</button>
 
+        <button type="button">
+          <Link to="/admin">Annuler</Link>
+        </button>
+      </div>
       <p>* Champ obligatoire</p>
     </form>
   );
 }
-
-ModalProject.propTypes = {
-  setFormActive: PropTypes.func.isRequired,
-};

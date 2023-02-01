@@ -1,3 +1,5 @@
+import EditProject from "@components/EditProject";
+import NewProject from "@components/NewProject";
 import Admin from "@pages/Admin";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -15,6 +17,8 @@ root.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/edit-project/:id" element={<EditProject />} />
+          <Route path="/new-project" element={<NewProject />} />
         </Routes>
       </Router>
     </ProjectContextProvider>
