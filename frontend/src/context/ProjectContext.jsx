@@ -7,16 +7,21 @@ const ProjectContext = createContext();
 function ProjectContextProvider({ children }) {
   const [projects, setProjects] = useState([]);
 
-  useEffect(() => {
+  const getProject = () => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/projects`)
       .then((reponse) => {
         setProjects(reponse.data);
       });
+  };
+
+  useEffect(() => {
+    getProject();
   }, []);
+
   const value = useMemo(
-    () => ({ projects, setProjects }),
-    [projects, setProjects]
+    () => ({ projects, setProjects, getProject }),
+    [projects, setProjects, getProject]
   );
   return (
     <ProjectContext.Provider value={value}>{children}</ProjectContext.Provider>

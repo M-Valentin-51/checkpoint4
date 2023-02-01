@@ -8,19 +8,21 @@ export default function Project({ project }) {
         <h2>{project.titre}</h2>
         <a href={project.lien}>Lien vers le dépot github</a>
         <p>{project.description}</p>
-        <ul>
-          {techno.map((tech) => (
-            <li key={tech}>
-              <span>#</span>
-              {tech}
-            </li>
-          ))}
-        </ul>
       </div>
-      <img
-        src={`${import.meta.env.VITE_BACKEND_URL}/${project.image}`}
-        alt=""
-      />
+      {project.image && (
+        <img
+          src={`${import.meta.env.VITE_BACKEND_URL}/${project.image}`}
+          alt=""
+        />
+      )}
+      <ul>
+        {techno.map((tech) => (
+          <li key={tech}>
+            <span>#</span>
+            {tech}
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

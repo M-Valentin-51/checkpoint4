@@ -29,4 +29,6 @@ router.post(
   projectControllers.add
 );
 
+router.delete("/project/:id", projectControllers.destroy);
+
 module.exports = router;

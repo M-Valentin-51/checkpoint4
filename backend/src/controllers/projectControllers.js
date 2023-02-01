@@ -60,7 +60,7 @@ const add = (req, res) => {
   models.project
     .insert(project)
     .then(([result]) => {
-      res.location(`/items/${result.insertId}`).sendStatus(201);
+      res.location(`/admin/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -85,19 +85,29 @@ const destroy = (req, res) => {
 };
 
 const uploadFile = (req, res, next) => {
-  // On récupère le nom du fichier
-  const { originalname } = req.file;
+  if (req.file) {
+    // On récupère le nom du fichier
+    const { originalname } = req.file;
 
-  // On récupère le nom du fichier
-  const { filename } = req.file;
+    // On récupère le nom du fichier
+    const { filename } = req.file;
 
-  // On utilise la fonction rename de fs pour renommer le fichier
-  fs.rename(`images/${filename}`, `images/${originalname}`, (err) => {
-    if (err) throw err;
-    req.body.image = originalname;
-    // res.send("File uploaded");
+    // On utilise la fonction rename de fs pour renommer le fichier
+    fs.rename(`images/${filename}`, `images/${originalname}`, (err) => {
+      if (err) {
+        console.error(err);
+        res.sendStatus(400);
+      } else {
+        req.body.image = originalname;
+        // res.send("File uploaded");
+        next();
+      }
+    });
+  } else {
+    req.body.image = null;
+
     next();
-  });
+  }
 };
 
 module.exports = {
