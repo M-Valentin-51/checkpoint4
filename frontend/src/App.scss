@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto:wght@300&family=Russo+One&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#root,
+body,
+html {
+  height: 100%;
+  background-color: rgb(33 33 33);
+  font-family: "Roboto", sans-serif;
+}
+/* --------------- Header ---------------*/
+.header {
+  h1 {
+    color: whitesmoke;
+    text-align: center;
+    background-image: url("./assets/header.jpeg");
+    padding: 7vh 0;
+    font-family: "Russo One", sans-serif;
+  }
+}
+/* --------------- Fin Header ---------------*/
+
+.cardProjet {
+  background-color: #b6daed;
+  margin: 5vw;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid gray;
+  border-radius: 10px;
+  box-shadow: 1px 1px 12px #1badff;
+  padding: 10px;
+
+  div,
+  img {
+    width: 50%;
+    height: 100%;
+  }
+
+  div {
+    h2,
+    a {
+      width: 50%;
+      display: inline-block;
+      text-decoration: none;
+      color: black;
+      padding: 15px 0;
+    }
+    a {
+      color: #09517c;
+    }
+  }
+
+  ul {
+    margin: 20px 0;
+  }
+  li {
+    list-style: none;
+    display: inline-block;
+    margin: 5px;
+  }
+  li span {
+    font-weight: 900;
+    color: red;
+  }
+}
