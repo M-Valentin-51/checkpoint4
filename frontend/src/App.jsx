@@ -1,18 +1,11 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useContext } from "react";
 import Project from "@components/Project";
 import Home from "./pages/Home";
 import "./App.scss";
+import { ProjectContext } from "./context/ProjectContext";
 
 function App() {
-  const [projects, setProjects] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/projects`)
-      .then((reponse) => {
-        setProjects(reponse.data);
-      });
-  }, []);
+  const { projects } = useContext(ProjectContext);
 
   return (
     <div className="App">
