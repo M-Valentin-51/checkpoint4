@@ -13,20 +13,19 @@ class ProjectManager extends AbstractManager {
         project.image,
         project.description,
         project.lien,
-        project.techno,
+        project.listTechno,
       ]
     );
   }
 
   update(project) {
     return this.connection.query(
-      `update ${this.table} set titre = ? , image = ? , description = ? , lien = ? , list_techno = ? where id = ?`,
+      `update ${this.table} set titre = ?  , description = ? , lien = ? , list_techno = ? where id = ?`,
       [
-        project.title,
-        project.image,
+        project.titre,
         project.description,
         project.lien,
-        project.techno,
+        project.listTechno,
         project.id,
       ]
     );

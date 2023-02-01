@@ -1,0 +1,67 @@
+.pannelAdmin {
+  background-color: whitesmoke;
+  height: 100%;
+
+  header {
+    border: 1px solid gray;
+    padding: 20px;
+    button {
+      margin: 5px;
+    }
+  }
+
+  section {
+    h3 {
+      text-align: center;
+    }
+    table {
+      border-spacing: 0;
+      border: 1px solid black;
+      width: 80vw;
+      margin: 30px auto;
+
+      td {
+        border: 1px solid black;
+      }
+
+      button {
+        width: 100%;
+        a {
+          text-decoration: none;
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+.formProject {
+  background-color: aliceblue;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  div > * {
+    margin: 10px;
+    vertical-align: top;
+  }
+  label {
+    margin-right: 10px;
+    display: inline-block;
+    width: 14vw;
+    text-align: right;
+  }
+  input,
+  textarea {
+    width: 40vw;
+  }
+  button {
+    display: inline-block;
+    width: 100px;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}

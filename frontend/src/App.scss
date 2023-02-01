@@ -25,7 +25,7 @@ html {
 /* --------------- Fin Header ---------------*/
 
 .cardProjet {
-  background-color: #b6daed;
+  color: #1badff;
   margin: 5vw;
   display: flex;
   flex-wrap: wrap;
@@ -43,18 +43,20 @@ html {
   div {
     h2,
     a {
-      width: 50%;
-      display: inline-block;
+      display: block;
       text-decoration: none;
-      color: black;
-      padding: 15px 0;
+      margin: 15px 0;
+    }
+    h2 {
+      text-align: center;
     }
     a {
-      color: #09517c;
+      color: #969696;
     }
   }
 
   ul {
+    width: 100%;
     margin: 20px 0;
   }
   li {
