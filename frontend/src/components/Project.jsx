@@ -1,36 +1,38 @@
-import logo from "../assets/header.jpeg";
+import PropTypes from "prop-types";
 
-export default function Project() {
+export default function Project({ project }) {
+  const techno = project.list_techno.split(" ");
   return (
     <section className="cardProjet">
       <div>
-        <h2>Titre du projet</h2>
-        <a href="/">Lien vers le dépot github</a>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias natus
-          dolorum ullam earum illo eligendi aliquam doloribus repellendus at qui
-          quasi dolores pariatur reiciendis architecto, fugit ipsa sapiente!
-          Porro, fuga. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Ratione odio saepe delectus earum temporibus quam adipisci alias,
-          eveniet ipsam debitis excepturi aliquam, ullam eum qui. Nisi illum
-          corporis sit ratione?
-        </p>
+        <h2>{project.titre}</h2>
+        <a href={project.lien}>Lien vers le dépot github</a>
+        <p>{project.description}</p>
         <ul>
-          <li>
-            <span>#</span>Techno
-          </li>
-          <li>
-            <span>#</span>Techno
-          </li>
-          <li>
-            <span>#</span>Techno
-          </li>
-          <li>
-            <span>#</span>Techno
-          </li>
+          {techno.map((tech) => (
+            <li key={tech}>
+              <span>#</span>
+              {tech}
+            </li>
+          ))}
         </ul>
       </div>
-      <img src={logo} alt="" />
+      <img
+        src={`${import.meta.env.VITE_BACKEND_URL}/${project.image}`}
+        alt=""
+      />
     </section>
   );
 }
+
+Project.propTypes = {
+  project: PropTypes.shape({
+    date_ajout: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+    lien: PropTypes.string.isRequired,
+    list_techno: PropTypes.arrayOf(PropTypes.string.isRequired),
+    titre: PropTypes.string.isRequired,
+  }).isRequired,
+};
