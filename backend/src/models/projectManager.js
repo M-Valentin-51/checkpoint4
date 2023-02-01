@@ -13,7 +13,7 @@ class ProjectManager extends AbstractManager {
         project.image,
         project.description,
         project.lien,
-        project.techno,
+        project.listTechno,
       ]
     );
   }
