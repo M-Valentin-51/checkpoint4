@@ -5,6 +5,13 @@ class ProjectManager extends AbstractManager {
     super({ table: "project" });
   }
 
+  findAll() {
+    return this.connection.query(
+      `select project.* ,JSON_ARRAYAGG(JSON_OBJECT('nom',commentaire.nom, 'message', commentaire.message , 'date' , commentaire.date_ajout)) as commentaire from project join  commentaire on project.
+      id = commentaire.project_id group by project.id ; `
+    );
+  }
+
   insert(project) {
     return this.connection.query(
       `insert into ${this.table} (titre , date_ajout , image , description , lien , list_techno) values (? , now() , ? , ? , ? , ?)`,
