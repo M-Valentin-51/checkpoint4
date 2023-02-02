@@ -68,4 +68,28 @@ html {
     font-weight: 900;
     color: red;
   }
+
+  form {
+    width: 100%;
+    display: flex;
+    input {
+      flex: 1;
+    }
+  }
+  .comment {
+    --background-color: #969696;
+    border: 1px solid wheat;
+    width: 100%;
+    max-height: 100px;
+    box-sizing: border-box;
+    overflow: scroll;
+
+    li {
+      display: block;
+      --border-bottom: 1px solid white;
+      span {
+        color: whitesmoke;
+      }
+    }
+  }
 }

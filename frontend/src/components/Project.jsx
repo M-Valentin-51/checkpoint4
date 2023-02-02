@@ -1,4 +1,5 @@
-import PropTypes from "prop-types";
+import PropTypes, { shape } from "prop-types";
+import SendComment from "./SendComment";
 
 export default function Project({ project }) {
   const techno = project.list_techno.split(" ");
@@ -23,6 +24,20 @@ export default function Project({ project }) {
           </li>
         ))}
       </ul>
+
+      <SendComment projectId={project.id} />
+      <div className="comment">
+        <ul>
+          {project.commentaire.map((comment) => (
+            <li>
+              <p>
+                <span>{comment.nom} : </span>
+                {comment.message}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
@@ -36,5 +51,12 @@ Project.propTypes = {
     lien: PropTypes.string.isRequired,
     list_techno: PropTypes.arrayOf(PropTypes.string.isRequired),
     titre: PropTypes.string.isRequired,
+    commentaire: PropTypes.arrayOf(
+      shape({
+        nom: PropTypes.string.isRequired,
+        message: PropTypes.string.isRequired,
+        date_ajout: PropTypes.string.isRequired,
+      })
+    ),
   }).isRequired,
 };
