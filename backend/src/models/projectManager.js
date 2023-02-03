@@ -7,7 +7,7 @@ class ProjectManager extends AbstractManager {
 
   findAll() {
     return this.connection.query(
-      `select project.* ,JSON_ARRAYAGG(JSON_OBJECT('nom',commentaire.nom, 'message', commentaire.message , 'date' , commentaire.date_ajout)) as commentaire from project join  commentaire on project.
+      `select project.* ,JSON_ARRAYAGG(JSON_OBJECT('nom',commentaire.nom, 'message', commentaire.message , 'date' , commentaire.date_ajout)) as commentaire from project left join  commentaire on project.
       id = commentaire.project_id group by project.id ; `
     );
   }

@@ -1,8 +1,12 @@
 import PropTypes, { shape } from "prop-types";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 import SendComment from "./SendComment";
 
 export default function Project({ project }) {
   const techno = project.list_techno.split(" ");
+  const { auth } = useContext(AuthContext);
+
   return (
     <section className="cardProjet">
       <div>
@@ -25,17 +29,18 @@ export default function Project({ project }) {
         ))}
       </ul>
 
-      <SendComment projectId={project.id} />
+      {auth.name && <SendComment projectId={project.id} />}
       <div className="comment">
         <ul>
-          {project.commentaire.map((comment) => (
-            <li>
-              <p>
-                <span>{comment.nom} : </span>
-                {comment.message}
-              </p>
-            </li>
-          ))}
+          {project.commentaire[0].name &&
+            project.commentaire.map((comment) => (
+              <li>
+                <p>
+                  <span>{comment.nom} : </span>
+                  {comment.message}
+                </p>
+              </li>
+            ))}
         </ul>
       </div>
     </section>

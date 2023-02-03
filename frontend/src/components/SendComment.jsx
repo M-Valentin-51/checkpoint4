@@ -2,9 +2,11 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { useContext, useRef } from "react";
 import { ProjectContext } from "../context/ProjectContext";
+import { AuthContext } from "../context/AuthContext";
 
 export default function SendComment({ projectId }) {
   const { getProject } = useContext(ProjectContext);
+  const { auth } = useContext(AuthContext);
   const msg = useRef();
 
   return (
@@ -15,7 +17,7 @@ export default function SendComment({ projectId }) {
         if (msg.current.value.length) {
           axios
             .post(`${import.meta.env.VITE_BACKEND_URL}/commentaire`, {
-              nom: "null",
+              nom: auth.name,
               message: msg.current.value,
               projectId,
             })
