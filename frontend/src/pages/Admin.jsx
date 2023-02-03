@@ -1,16 +1,23 @@
 import axios from "axios";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 import "../admin.scss";
 import { ProjectContext } from "../context/ProjectContext";
 
 export default function Admin() {
   const { projects, setProjects } = useContext(ProjectContext);
+  const { auth } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const deleteProject = (id) => {
     axios.delete(`${import.meta.env.VITE_BACKEND_URL}/project/${id}`);
     setProjects(projects.filter((project) => project.id !== id));
   };
+
+  if (!auth.admin) {
+    navigate("/");
+  }
 
   return (
     <section className="pannelAdmin">

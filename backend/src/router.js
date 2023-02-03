@@ -18,7 +18,6 @@ router.post("/items", itemControllers.add);
 router.delete("/items/:id", itemControllers.destroy);
 
 const projectControllers = require("./controllers/projectControllers");
-const commentaireController = require("./controllers/commentaireControllers");
 
 router.get("/projects", projectControllers.browse);
 router.get("/project/:id", projectControllers.read);
@@ -33,6 +32,13 @@ router.post(
 
 router.delete("/project/:id", projectControllers.destroy);
 
+const commentaireController = require("./controllers/commentaireControllers");
+
 router.post("/commentaire", commentaireController.add);
+
+const userController = require("./controllers/userControllers");
+
+router.post("/connexion", userController.read);
+router.post("/createaccount", userController.add);
 
 module.exports = router;

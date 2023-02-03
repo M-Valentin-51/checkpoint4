@@ -5,6 +5,14 @@ CREATE TABLE item (
 
 INSERT INTO item (title) VALUES ('Stuff'), ('Doodads');
 
+CREATE TABLE user (
+  id int(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  name varchar(255) NOT NULL,
+  password varchar(255) NOT NULL,
+  admin BOOLEAN
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO user (name , password , admin ) VALUES ("valentin" , "valentin" , true);
 
 CREATE TABLE project (
   id int(11) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -27,5 +35,3 @@ CREATE TABLE commentaire (
   project_id int(11) UNSIGNED NOT NULL,
   CONSTRAINT fk_commentaire FOREIGN KEY (project_id) references project(id)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO commentaire (nom , date_ajout , message , project_id ) VALUES ("valentin" , now() , "Bien jouée" , 1) , ("valentin" , now() , "Bon travail" , 1)
